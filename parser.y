@@ -9,7 +9,7 @@
 
 	void finish()
 	{
-		printf("\n------------------->valid python syntax<--------------------\n\n\n\n");
+		printf("\n!!! Parsing Successful !!!...\n\n\n\n");
         	print_symbol_table();
 		exit(0);
 	}
@@ -148,7 +148,7 @@ list_elements : T_identifier {insert("Identifier", $<data>1, @1.first_line, strl
 
 void yyerror(const char *msg)
 {
-	printf("\nSyntax Error at Line %d, Column : %d\n",  yylineno, yylloc.last_column);
+	printf("\nERROR : Syntax Error at Line %d, Column : %d\n",  yylineno, yylloc.last_column);
 	exit(0);
 }
 

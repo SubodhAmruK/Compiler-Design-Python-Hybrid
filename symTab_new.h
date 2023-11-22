@@ -128,8 +128,8 @@ void is_iter(char *name, int lineno){
 
 void print_symbol_table() {
     int i;
-    printf("<-------------------------------------------------------->\n");
-    printf("| %-20s | %-15s | %-10s | %-15s |\n", "Name", "Type", "Scope", "Line Numbers");
+    printf("|--------------------------------------------------------------------|\n");
+    printf("| %-20s | %-15s | %-10s | %-15s |\n", "Token Name ", "Token Type", "Token Scope", "At Line Numbers");
     printf("|---------------------|-----------------|------------|-----------------|\n");
     
     for (i = 0; i < HASHSIZE; ++i) {
@@ -137,19 +137,19 @@ void print_symbol_table() {
             Table_List *l = hash_table[i];
             while (l != NULL) {
                 Reference_List *t = l->lines;
-                printf("| %-20s | %-15s | %-10d ", l->symbolTable_name, l->symbolTable_type, l->scope);
+                printf("| %-20s | %-15s | %-10d |", l->symbolTable_name, l->symbolTable_type, l->scope);
 
                 while (t != NULL) {
                     printf(" %4d", t->lineno);
                     t = t->next;
                 }
-                printf(" |\n");
+                printf(" \n");
                 l = l->next;
             }
         }
     }
 
-    printf("<-------------------------------------------------------->\n");
+    printf("|--------------------------------------------------------------------|\n");
 }
 
 
