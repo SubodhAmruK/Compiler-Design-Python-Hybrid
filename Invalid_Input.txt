@@ -6,11 +6,11 @@ x = 10
 y = 20
 z = x + y
 
-Alist = [10, 70, 50, 30]
+Alist = [10, 70, 50, 30
 print(Alist[0])
 
 #Error1
-n = 1
+#n = 1
 print(n[0])
 
 def calculate(a, b):
