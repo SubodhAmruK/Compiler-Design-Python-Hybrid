@@ -16,13 +16,13 @@
   int yycolumn = 1;
   int beginning = 1;
   int indentation_type;
- 	void display_token(char *token);
+ 	void display_token(char *token, char *symbol);
   int indent_type(int indent_depth);
 
   //Definitions
  	void display_token(char *token, char *symbol){
       if(beginning==1){
-          printf("Tokens Generation Successful !!!...")
+          printf("Tokens Generation Successful !!!...");
           printf("Token sequence..\n");
           beginning--;
       }
@@ -93,7 +93,7 @@ double_quote_string \"([^\"\n])*\"
 "break" {display_token("break", yytext); return T_break;}
 "pass" {display_token("pass",yytext); return T_pass;}
 "return" {display_token("return",yytext); return T_return;}
-<<EOF>> {display_token("EOF"); return T_EOF;}
+<<EOF>> {display_token("EOF",yytext); return T_EOF;}
 ":" {display_token("colon",yytext); return T_colon;}
 ">" {display_token("greaterThan",yytext); return T_greaterThan;}
 "<" {display_token("lesserThan",yytext); return T_lesserThan;}
