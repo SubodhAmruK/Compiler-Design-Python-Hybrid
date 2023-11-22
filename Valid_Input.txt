@@ -1,26 +1,30 @@
-# Importing Packages
+#Importing Packages
 import math
 
-# Definitions
+#Definitions
 x = 10
 y = 20
 z = x + y
 
+list = [10, 70, 50, 30]
+print(list[0])
 
 def calculate(a, b):
-    flag = 1
-    while flag == 1:
-        if b == 0:
-            res = 0
-        else:
-            res = a / b
-        flag = 0
+	flag = 1
+	while(flag == 1):
+		if(b == 0):
+			res = 0
+		else:
+			res = a/b
+		flag = 0
 
-calculate(float(x), float(y))  # Change data types to float
+calculate(x, y)
 
-if x > 0:
-    print("Positive")
-elif x == 0:
-    print("Zero")
+if(x > 0):
+	print("Positive")
+elif(x == 0):
+	print("Zero")
 else:
-    print("Negative")
+	print("Negative")
+
+
