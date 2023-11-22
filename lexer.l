@@ -20,12 +20,13 @@
   int indent_type(int indent_depth);
 
   //Definitions
- 	void display_token(char *token){
+ 	void display_token(char *token, char *symbol){
       if(beginning==1){
-          printf("Token sequence:-\n");
+          printf("Tokens Generation Successful !!!...")
+          printf("Token sequence..\n");
           beginning--;
       }
- 	  printf("%s\n", token);
+ 	  printf("< %s , %s >\n",symbol, token);
  	}
 
   int indent_type(int indent_depth){
@@ -33,20 +34,20 @@
         {
           while (indent_depth < peek()) pop();
           yylval.indent_depth = indent_depth;
-          display_token("Dedent");
+          display_token("Dedent",indent_depth);
           return 1;
         }
 
         if(indent_depth == peek())
         {
-          display_token("Nodent");
+          display_token("Nodent",indent_depth);
           yylval.indent_depth = indent_depth;
           return 2;
         }
         if(indent_depth > peek())
         {
           push(indent_depth);
-          display_token("Indent");
+          display_token("Indent",indent_depth);
           yylval.indent_depth = indent_depth;
           return 3;
         }
@@ -72,7 +73,7 @@ double_quote_string \"([^\"\n])*\"
 {multiline_comment_single} {}
 {multiline_comment_double} {}
 [ ] {}
-"\n"  {yycolumn=1; display_token("NL"); return T_newLine;}
+"\n"  {yycolumn=1; display_token("< NL >",T_newLine); return T_newLine;}
 
 [\t]* {
         indent_depth = strlen(yytext) + 1;
@@ -83,48 +84,48 @@ double_quote_string \"([^\"\n])*\"
         else return Indent;
       }
 
-"True" {display_token("True"); return T_True;}
-"False" {display_token("False"); return T_False;}
-"if" {display_token("if"); return T_if;}
-"in" {display_token("in"); return T_in;}
-"while" {display_token("while"); return T_while;}
-"continue" {display_token("continue"); return T_continue;}
-"break" {display_token("break"); return T_break;}
-"pass" {display_token("pass"); return T_pass;}
-"return" {display_token("return"); return T_return;}
+"True" {display_token("True",T_True); return T_True;}
+"False" {display_token("False",T_False); return T_False;}
+"if" {display_token("if",T_if); return T_if;}
+"in" {display_token("in",T_in); return T_in;}
+"while" {display_token("while",T_while); return T_while;}
+"continue" {display_token("continue",T_continue); return T_continue;}
+"break" {display_token("break", T_break); return T_break;}
+"pass" {display_token("pass",T_pass); return T_pass;}
+"return" {display_token("return",T_return); return T_return;}
 <<EOF>> {display_token("EOF"); return T_EOF;}
-":" {display_token("colon"); return T_colon;}
-">" {display_token("greaterThan"); return T_greaterThan;}
-"<" {display_token("lesserThan"); return T_lesserThan;}
-">=" {display_token("greaterThanEqualTo"); return T_greaterThanEqualTo;}
-"<=" {display_token("lesserThanEqualTo"); return T_lesserThanEqualTo;}
-"==" {display_token("Equal Operator"); return T_equalOP;}
-"!=" {display_token("Not Equal Operator"); return T_notEqualOP;}
-"None" {display_token("None"); return T_None;}
-"and" {display_token("and"); return T_and;}
-"or" {display_token("or"); return T_or;}
-"not" {display_token("not"); return T_not;}
-"elif" {display_token("elif"); return T_elif;}
-"else" {display_token("else"); return T_else;}
-"def" {display_token("def"); return T_def;}
-"[" {display_token("openBracket"); return T_openBracket;}
-"]" {display_token("closeBracket"); return T_closeBracket;}
-"," {display_token("comma"); return T_comma;}
-"=" {display_token("assignOP"); return T_assignOP;}
-"+" {display_token("plus"); return T_plus;}
-"-" {display_token("minus"); return T_minus;}
-"*" {display_token("multiply"); return T_multiply;}
-"/" {display_token("division"); return T_division;}
-"(" { display_token("openParanthesis"); return T_openParanthesis;}
-")" {display_token("closeParanthesis"); return T_closeParanthesis;}
-"list" {display_token("list"); return T_List;}
-"range" {display_token("range"); return T_range;}
-"import" {display_token("import"); return T_import;}
-"print"  {display_token("print"); return T_print;}
-{single_quote_string} {yylval.data = strdup(yytext); display_token(yylval.data); return T_string;}
-{double_quote_string} {yylval.data = strdup(yytext); display_token(yylval.data); return T_string;}
-{number} {yylval.data = strdup(yytext); display_token(yylval.data); return T_number;}
-{id} {yylval.data = strdup(yytext); display_token(yylval.data); return T_identifier;}
+":" {display_token("colon",T_colon); return T_colon;}
+">" {display_token("greaterThan",T_greaterThan); return T_greaterThan;}
+"<" {display_token("lesserThan",T_lesserThan); return T_lesserThan;}
+">=" {display_token("greaterThanEqualTo",T_greaterThanEqualTo); return T_greaterThanEqualTo;}
+"<=" {display_token("lesserThanEqualTo",T_lesserThanEqualTo); return T_lesserThanEqualTo;}
+"==" {display_token("Equal Operator",T_equalOP); return T_equalOP;}
+"!=" {display_token("Not Equal Operator",T_notEqualOP); return T_notEqualOP;}
+"None" {display_token("None",T_None); return T_None;}
+"and" {display_token("and",T_and); return T_and;}
+"or" {display_token("or",T_or); return T_or;}
+"not" {display_token("not",T_not); return T_not;}
+"elif" {display_token("elif",T_elif); return T_elif;}
+"else" {display_token("else",T_else); return T_else;}
+"def" {display_token("def",T_def); return T_def;}
+"[" {display_token("openBracket",T_openBracket); return T_openBracket;}
+"]" {display_token("closeBracket",T_closeBracket); return T_closeBracket;}
+"," {display_token("comma",T_comma); return T_comma;}
+"=" {display_token("assignOP",T_assignOP); return T_assignOP;}
+"+" {display_token("plus",T_plus); return T_plus;}
+"-" {display_token("minus",T_minus); return T_minus;}
+"*" {display_token("multiply",T_multiply); return T_multiply;}
+"/" {display_token("division",T_division); return T_division;}
+"(" { display_token("openParanthesis",T_openParanthesis); return T_openParanthesis;}
+")" {display_token("closeParanthesis",T_closeParanthesis); return T_closeParanthesis;}
+"list" {display_token("list",T_List); return T_List;}
+"range" {display_token("range",T_range); return T_range;}
+"import" {display_token("import",T_import); return T_import;}
+"print"  {display_token("print",T_print); return T_print;}
+{single_quote_string} {yylval.data = strdup(yytext); display_token(yylval.data, T_string); return T_string;}
+{double_quote_string} {yylval.data = strdup(yytext); display_token(yylval.data,T_string); return T_string;}
+{number} {yylval.data = strdup(yytext); display_token(yylval.data,T_number); return T_number;}
+{id} {yylval.data = strdup(yytext); display_token(yylval.data,T_identifier); return T_identifier;}
 
 %%
 
