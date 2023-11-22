@@ -22,11 +22,11 @@
   //Definitions
  	void display_token(char *token, char *symbol){
       if(beginning==1){
-          printf("Tokens Generation Successful !!!...");
+          printf("Tokens Generation Successful !!!...\n");
           printf("Token sequence..\n");
           beginning--;
       }
- 	  printf("< %s   , %s >\n", token,symbol);
+ 	  printf("[ %s | %s ]\n", token,symbol);
  	}
 
   int indent_type(int indent_depth){
@@ -34,7 +34,7 @@
         {
           while (indent_depth < peek()) pop();
           yylval.indent_depth = indent_depth;
-          display_token("Dedent",yytext);
+          display_token("Dedent"," ");
           return 1;
         }
 
@@ -77,7 +77,7 @@ double_quote_string \"([^\"\n])*\"
 
 [\t]* {
         indent_depth = strlen(yytext) + 1;
-        printf("indent_depth: %d ",  indent_depth);
+        printf("indent_depth: %d \n",  indent_depth);
         indentation_type = indent_type(indent_depth);
         if(indentation_type == 1) return Dedent;
         else if(indentation_type == 2) return Nodent;
