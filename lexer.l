@@ -26,7 +26,7 @@
           printf("Token sequence..\n");
           beginning--;
       }
- 	  printf("<%s,%s>\n",symbol, token);
+ 	  printf("<%s,%s>\t", token,symbol);
  	}
 
   int indent_type(int indent_depth){
