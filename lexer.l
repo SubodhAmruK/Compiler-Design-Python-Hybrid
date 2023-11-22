@@ -22,8 +22,8 @@
   //Definitions
  	void display_token(char *token, char *symbol){
       if(beginning==1){
-          printf("!!! Tokens Generation Successful !!!...\n");
-          printf("Token sequence..\n");
+          printf("...!!! Tokens Generation Successful !!!...\n");
+          printf("...Token sequence...\n");
           beginning--;
       }
  	  printf("[ %s | %s ]\n", token,symbol);

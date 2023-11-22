@@ -148,7 +148,7 @@ list_elements : T_identifier {insert("Identifier", $<data>1, @1.first_line, strl
 
 void yyerror(const char *msg)
 {
-	printf("\nERROR : Syntax Error at Line %d, Column : %d\n",  yylineno, yylloc.last_column);
+	printf("!!! Parsing Failed !!!...\nERROR : Syntax Error at Line %d, Column : %d\n",  yylineno, yylloc.last_column);
 	exit(0);
 }
 
