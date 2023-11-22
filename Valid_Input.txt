@@ -6,8 +6,6 @@ x = 10
 y = 20
 z = x + y
 
-my_list = [10, 70, 50, 30]
-print(my_list[0])
 
 def calculate(a, b):
     flag = 1
